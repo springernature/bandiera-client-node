@@ -19,9 +19,10 @@
 
 var assert = require('proclaim');
 var mockery = require('mockery');
+var sinon = require('sinon');
 
 describe('bandiera-client-node', function () {
-	var Client;
+	var bandiera;
 
 	beforeEach(function () {
 		mockery.enable({
@@ -29,15 +30,66 @@ describe('bandiera-client-node', function () {
 			warnOnUnregistered: false,
 			warnOnReplace: false
 		});
-		Client = require('../../lib/client');
+		bandiera = require('../../lib/client');
 	});
 
 	afterEach(function () {
 		mockery.disable();
 	});
 
-	it('should be a function', function () {
-		assert.isFunction(Client);
+	it('should be an object', function () {
+		assert.isObject(bandiera);
+	});
+
+	describe('.createClient()', function () {
+
+		beforeEach(function () {
+			sinon.spy(bandiera, 'Client');
+		});
+
+		afterEach(function () {
+			bandiera.Client.restore();
+		});
+
+		it('should be a function', function () {
+			assert.isFunction(bandiera.createClient);
+		});
+
+		it('should return a `bandiera.Client` instance', function () {
+			assert.isInstanceOf(bandiera.createClient('foo'), bandiera.Client);
+		});
+
+		it('should create a `bandiera.Client` instance with the expected arguments', function () {
+			bandiera.createClient('foo');
+			assert.isTrue(bandiera.Client.calledWithNew());
+			assert.isTrue(bandiera.Client.withArgs('foo').calledOnce);
+		});
+
+	});
+
+	describe('.Client()', function () {
+
+		it('should be a function', function () {
+			assert.isFunction(bandiera.Client);
+		});
+
+		it('should return an object', function () {
+			assert.isObject(new bandiera.Client('foo'));
+		});
+
+		describe('returned object', function () {
+			var client;
+
+			beforeEach(function () {
+				client = new bandiera.Client('foo');
+			});
+
+			it('should have a `baseUri` property matching the baseUri it was constructed with', function () {
+				assert.strictEqual(client.baseUri, 'foo');
+			});
+
+		});
+
 	});
 
 });
