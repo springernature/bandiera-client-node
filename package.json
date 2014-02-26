@@ -1,0 +1,36 @@
+{
+	"name": "bandiera-client",
+	"version": "0.0.0",
+
+	"description": "Bandiera is a simple, stand-alone feature flagging service that is not tied to any existing web framework or language. This is a client for talking to the web service.",
+	"keywords": [ "feature", "flagging" ],
+
+	"author": "Nature Publishing Group",
+	"contributors": [
+		"Rowan Manning (http://rowanmanning.com/)"
+	],
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nature/bandiera-client-node.git"
+	},
+	"homepage": "https://github.com/nature/bandiera-client-node",
+	"bugs": "https://github.com/nature/bandiera-client-node/issues",
+
+	"dependencies": {
+		"request": "~2.34"
+	},
+	"devDependencies": {
+		"grunt": "~0.4",
+		"grunt-contrib-jshint": "~0.8",
+		"grunt-mocha-test": "~0.9",
+		"mockery": "~1.4",
+		"proclaim": "~2.0",
+		"sinon": "~1.8"
+	},
+
+	"main": "./lib/client.js",
+	"scripts": {
+		"test": "grunt"
+	}
+}
