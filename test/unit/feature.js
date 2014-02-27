@@ -25,16 +25,7 @@ describe('feature', function () {
 	var mod;
 
 	beforeEach(function () {
-		mockery.enable({
-			useCleanCache: true,
-			warnOnUnregistered: false,
-			warnOnReplace: false
-		});
 		mod = require('../../lib/feature');
-	});
-
-	afterEach(function () {
-		mockery.disable();
 	});
 
 	it('should be an object', function () {
@@ -108,6 +99,31 @@ describe('feature', function () {
 
 			it('should have a `enabled` property matching the `enabled` option it was constructed with', function () {
 				assert.isTrue(feature.enabled);
+			});
+
+		});
+
+		describe('returned object (with defaults)', function () {
+			var feature;
+
+			beforeEach(function () {
+				feature = new mod.Feature({});
+			});
+
+			it('should have an empty string `name` property', function () {
+				assert.strictEqual(feature.name, '');
+			});
+
+			it('should have an empty string `group` property', function () {
+				assert.strictEqual(feature.group, '');
+			});
+
+			it('should have an empty string `description` property', function () {
+				assert.strictEqual(feature.description, '');
+			});
+
+			it('should have a `enabled` property of `false`', function () {
+				assert.isFalse(feature.enabled);
 			});
 
 		});
