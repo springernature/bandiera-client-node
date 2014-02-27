@@ -21,8 +21,8 @@ var assert = require('proclaim');
 var mockery = require('mockery');
 var sinon = require('sinon');
 
-describe('bandiera-client-node', function () {
-	var bandiera;
+describe('client', function () {
+	var mod;
 
 	beforeEach(function () {
 		mockery.enable({
@@ -30,7 +30,7 @@ describe('bandiera-client-node', function () {
 			warnOnUnregistered: false,
 			warnOnReplace: false
 		});
-		bandiera = require('../../lib/client');
+		mod = require('../../lib/client');
 	});
 
 	afterEach(function () {
@@ -38,31 +38,31 @@ describe('bandiera-client-node', function () {
 	});
 
 	it('should be an object', function () {
-		assert.isObject(bandiera);
+		assert.isObject(mod);
 	});
 
 	describe('.createClient()', function () {
 
 		beforeEach(function () {
-			sinon.spy(bandiera, 'Client');
+			sinon.spy(mod, 'Client');
 		});
 
 		afterEach(function () {
-			bandiera.Client.restore();
+			mod.Client.restore();
 		});
 
 		it('should be a function', function () {
-			assert.isFunction(bandiera.createClient);
+			assert.isFunction(mod.createClient);
 		});
 
-		it('should return a `bandiera.Client` instance', function () {
-			assert.isInstanceOf(bandiera.createClient('foo'), bandiera.Client);
+		it('should return a `mod.Client` instance', function () {
+			assert.isInstanceOf(mod.createClient('foo'), mod.Client);
 		});
 
-		it('should create a `bandiera.Client` instance with the expected arguments', function () {
-			bandiera.createClient('foo');
-			assert.isTrue(bandiera.Client.calledWithNew());
-			assert.isTrue(bandiera.Client.withArgs('foo').calledOnce);
+		it('should create a `mod.Client` instance with the expected arguments', function () {
+			mod.createClient('foo');
+			assert.isTrue(mod.Client.calledWithNew());
+			assert.isTrue(mod.Client.withArgs('foo').calledOnce);
 		});
 
 	});
@@ -70,18 +70,18 @@ describe('bandiera-client-node', function () {
 	describe('.Client()', function () {
 
 		it('should be a function', function () {
-			assert.isFunction(bandiera.Client);
+			assert.isFunction(mod.Client);
 		});
 
 		it('should return an object', function () {
-			assert.isObject(new bandiera.Client('foo'));
+			assert.isObject(new mod.Client('foo'));
 		});
 
 		describe('returned object', function () {
 			var client;
 
 			beforeEach(function () {
-				client = new bandiera.Client('foo');
+				client = new mod.Client('foo');
 			});
 
 			it('should have a `baseUri` property matching the baseUri it was constructed with', function () {
