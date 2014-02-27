@@ -190,18 +190,17 @@ describe('client', function () {
 					});
 				});
 
-				it('should callback with a list of group objects', function (done) {
+				it('should callback with a map of groups to feature lists', function (done) {
 					client.getAll(function (err, groups) {
 						assert.isNull(err);
-						assert.isArray(groups);
-						assert.lengthEquals(groups, 1);
-						assert.strictEqual(groups[0].name, 'foo');
-						assert.isArray(groups[0].features);
-						assert.lengthEquals(groups[0].features, 1);
-						assert.strictEqual(groups[0].features[0].group, 'foo');
-						assert.strictEqual(groups[0].features[0].name, 'bar');
-						assert.strictEqual(groups[0].features[0].description, 'baz');
-						assert.strictEqual(groups[0].features[0].enabled, true);
+						assert.deepEqual(groups, {
+							foo: [{
+								group: 'foo',
+								name: 'bar',
+								description: 'baz',
+								enabled: true
+							}]
+						});
 						done();
 					});
 				});
