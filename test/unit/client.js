@@ -88,6 +88,22 @@ describe('client', function () {
 				assert.strictEqual(client.baseUri, 'foo');
 			});
 
+			it('should have an `isEnabled` method', function () {
+				assert.isFunction(client.isEnabled);
+			});
+
+			it('should have a `getAll` method', function () {
+				assert.isFunction(client.getAll);
+			});
+
+			it('should have a `getFeaturesForGroup` method', function () {
+				assert.isFunction(client.getFeaturesForGroup);
+			});
+
+			it('should have a `getFeature` method', function () {
+				assert.isFunction(client.getFeature);
+			});
+
 		});
 
 	});
