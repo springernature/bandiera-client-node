@@ -74,18 +74,18 @@ describe('client', function () {
 		});
 
 		it('should return an object', function () {
-			assert.isObject(new mod.Client('foo'));
+			assert.isObject(new mod.Client('http://bandiera/api'));
 		});
 
 		describe('returned object', function () {
 			var client;
 
 			beforeEach(function () {
-				client = new mod.Client('foo');
+				client = new mod.Client('http://bandiera/api');
 			});
 
 			it('should have a `baseUri` property matching the baseUri it was constructed with', function () {
-				assert.strictEqual(client.baseUri, 'foo');
+				assert.strictEqual(client.baseUri, 'http://bandiera/api');
 			});
 
 			it('should have an `isEnabled` method', function () {
@@ -102,6 +102,32 @@ describe('client', function () {
 
 			it('should have a `getFeature` method', function () {
 				assert.isFunction(client.getFeature);
+			});
+
+		});
+
+		describe('returned object (with defaults)', function () {
+			var client;
+
+			beforeEach(function () {
+				client = new mod.Client();
+			});
+
+			it('should have a `baseUri` of "http://localhost/api"', function () {
+				assert.strictEqual(client.baseUri, 'http://localhost/api');
+			});
+
+		});
+
+		describe('returned object (with no "/api" in URI)', function () {
+			var client;
+
+			beforeEach(function () {
+				client = new mod.Client('http://bandiera');
+			});
+
+			it('should have a `baseUri` property with "/api" appended', function () {
+				assert.strictEqual(client.baseUri, 'http://bandiera/api');
 			});
 
 		});
