@@ -36,7 +36,8 @@ client.getAll(function (err, groups) {
         'group name': [
             {group: 'group name', name: String, description: String, enabled: Boolean}, 
             ...
-        ]   
+        ],
+        ... 
     }
 	 */
 });
