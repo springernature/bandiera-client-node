@@ -1,4 +1,3 @@
-
 Bandiera Client (Node)
 ======================
 
@@ -25,7 +24,7 @@ var bandiera = require('bandiera-client');
 var client = bandiera.createClient('http://your-bandiera-server.com');
 ```
 
-Each method of the client requires a callback. These callbacks accepts two arguments, the first is an error object or `null` the second contains the response.
+Each method of the client requires a callback. These callbacks accept two arguments, the first is an error object or `null` the second contains the response.
 
 Get features for all groups:
 
