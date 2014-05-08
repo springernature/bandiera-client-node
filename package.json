@@ -17,6 +17,7 @@
 	},
 	"homepage": "https://github.com/nature/bandiera-client-node",
 	"bugs": "https://github.com/nature/bandiera-client-node/issues",
+	"license": "GPL3",
 
 	"dependencies": {
 		"request": "~2.34"

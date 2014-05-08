@@ -1,9 +1,14 @@
+
 Bandiera Client (Node)
 ======================
 
-This is a client for talking to the [Bandiera][bandiera] feature flagging service from a [Node.js]( http://nodejs.org) application.
+This is a client for talking to the [Bandiera][bandiera] feature flagging service from a [Node.js][node] application.
+This client currently only implements the read methods of the [Bandiera API][bandiera-api].
 
-This client currently only implements the read methods of the [Bandiera API](https://github.com/nature/bandiera/wiki/API-Documentation).
+**Current Version:** *0.0.0*  
+**Node Support:** *0.10.x, 0.11.x*  
+**License:** [GPL3][gpl]
+
 
 Installation
 ------------
@@ -13,6 +18,7 @@ npm install bandiera-client
 ```
 
 or add `bandiera-client` to your `package.json` file.
+
 
 Examples
 --------
@@ -75,6 +81,7 @@ client.isEnabled('group name', 'feature name', function (err, enabled) {
 });
 ```
 
+
 Tests
 -----
 
@@ -86,11 +93,17 @@ grunt lint  # Run JSHint with the correct config
 grunt test  # Run unit tests
 ```
 
+
 License
 -------
 
 [Copyright 2014 Nature Publishing Group](LICENSE.txt).  
 Bandiera is licensed under the [GNU General Public License 3.0][gpl].
 
-[gpl]: http://www.gnu.org/licenses/gpl-3.0.html
+
+
 [bandiera]: https://github.com/nature/bandiera
+[bandiera-api]: https://github.com/nature/bandiera/wiki/API-Documentation
+[gpl]: http://www.gnu.org/licenses/gpl-3.0.html
+[node]: http://nodejs.org
+
