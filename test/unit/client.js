@@ -101,16 +101,16 @@ describe('client', function () {
 				});
 
 				it('should call `request` with the expected arguments', function (done) {
-					client.get('/v1/all', function () {
+					client.get('/v2/all', function () {
 						assert.isTrue(request.calledOnce);
-						assert.strictEqual(request.firstCall.args[0].uri, 'http://bandiera/api/v1/all');
+						assert.strictEqual(request.firstCall.args[0].uri, 'http://bandiera/api/v2/all');
 						assert.isTrue(request.firstCall.args[0].json);
 						done();
 					});
 				});
 
 				it('should callback with the expected arguments', function (done) {
-					client.get('/v1/all', function (err, body) {
+					client.get('/v2/all', function (err, body) {
 						assert.strictEqual(err, null);
 						assert.strictEqual(body.foo, 'bar');
 						done();
@@ -128,7 +128,7 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v1/all', function (err) {
+					client.get('/v2/all', function (err) {
 						assert.strictEqual(err, requestError);
 						done();
 					});
@@ -145,7 +145,7 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v1/all', function (err) {
+					client.get('/v2/all', function (err) {
 						assert.isNotNull(err);
 						assert.strictEqual(err.message, 'Request was unsuccessful');
 						done();
@@ -185,7 +185,7 @@ describe('client', function () {
 
 				it('should call `get` with the expected arguments', function (done) {
 					client.getAll(function () {
-						assert.isTrue(client.get.withArgs('/v1/all').calledOnce);
+						assert.isTrue(client.get.withArgs('/v2/all').calledOnce);
 						done();
 					});
 				});
@@ -233,7 +233,7 @@ describe('client', function () {
 
 				it('should call `get` with the expected arguments', function (done) {
 					client.getFeaturesForGroup('foo', function () {
-						assert.isTrue(client.get.withArgs('/v1/groups/foo/features').calledOnce);
+						assert.isTrue(client.get.withArgs('/v2/groups/foo/features').calledOnce);
 						done();
 					});
 				});
@@ -277,7 +277,7 @@ describe('client', function () {
 
 				it('should call `get` with the expected arguments', function (done) {
 					client.getFeature('foo', 'bar', function () {
-						assert.isTrue(client.get.withArgs('/v1/groups/foo/features/bar').calledOnce);
+						assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar').calledOnce);
 						done();
 					});
 				});
