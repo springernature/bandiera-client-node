@@ -33,10 +33,12 @@ var client = bandiera.createClient('http://your-bandiera-server.com');
 
 Each method of the client requires a callback. These callbacks accept two arguments, the first is an error object or `null` the second contains the response.
 
+In the examples below, `params` is an object containing query parameters to send as part of the request to Bandiera. See the [API documentation][bandiera-api] for available parameters.
+
 Get features for all groups:
 
 ```js
-client.getAll(function (err, groups) {
+client.getAll(params, function (err, groups) {
     /*
     groups = {
         'group name': [
@@ -52,7 +54,7 @@ client.getAll(function (err, groups) {
 Get features for a group:
 
 ```js
-client.getFeaturesForGroup('group name', function (err, features) {
+client.getFeaturesForGroup('group name', params, function (err, features) {
 	/*
     features = [
         {group: 'group name', name: String, description: String, enabled: Boolean}, 
@@ -65,7 +67,7 @@ client.getFeaturesForGroup('group name', function (err, features) {
 Get an individual feature:
 
 ```js
-client.getFeature('group name', 'feature name', function (err, feature) {
+client.getFeature('group name', 'feature name', params, function (err, feature) {
     /*
     feature = {group: 'group name', name: 'feature name', description: String, enabled: Boolean}
      */
@@ -75,7 +77,7 @@ client.getFeature('group name', 'feature name', function (err, feature) {
 Get the status of an individual feature:
 
 ```js
-client.isEnabled('group name', 'feature name', function (err, enabled) {
+client.isEnabled('group name', 'feature name', params, function (err, enabled) {
 	/*
     enabled = Boolean   
      */
