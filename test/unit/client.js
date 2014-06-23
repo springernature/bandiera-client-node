@@ -101,16 +101,18 @@ describe('client', function () {
 				});
 
 				it('should call `request` with the expected arguments', function (done) {
-					client.get('/v2/all', function () {
+					client.get('/v2/all', {user_group: 'foo'}, function () {
 						assert.isTrue(request.calledOnce);
 						assert.strictEqual(request.firstCall.args[0].uri, 'http://bandiera/api/v2/all');
+						assert.isObject(request.firstCall.args[0].qs);
+						assert.strictEqual(request.firstCall.args[0].qs.user_group, 'foo');
 						assert.isTrue(request.firstCall.args[0].json);
 						done();
 					});
 				});
 
 				it('should callback with the expected arguments', function (done) {
-					client.get('/v2/all', function (err, body) {
+					client.get('/v2/all', {}, function (err, body) {
 						assert.strictEqual(err, null);
 						assert.strictEqual(body.foo, 'bar');
 						done();
@@ -128,7 +130,7 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', function (err) {
+					client.get('/v2/all', {}, function (err) {
 						assert.strictEqual(err, requestError);
 						done();
 					});
@@ -145,7 +147,7 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', function (err) {
+					client.get('/v2/all', {}, function (err) {
 						assert.isNotNull(err);
 						assert.strictEqual(err.message, 'Request was unsuccessful');
 						done();
@@ -184,14 +186,15 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function (done) {
-					client.getAll(function () {
-						assert.isTrue(client.get.withArgs('/v2/all').calledOnce);
+					var params = {user_group: 'foo'};
+					client.getAll(params, function () {
+						assert.isTrue(client.get.withArgs('/v2/all', params).calledOnce);
 						done();
 					});
 				});
 
 				it('should callback with a map of groups to feature lists', function (done) {
-					client.getAll(function (err, groups) {
+					client.getAll({}, function (err, groups) {
 						assert.isNull(err);
 						assert.deepEqual(groups, {
 							foo: [{
@@ -232,14 +235,15 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function (done) {
-					client.getFeaturesForGroup('foo', function () {
-						assert.isTrue(client.get.withArgs('/v2/groups/foo/features').calledOnce);
+					var params = {user_group: 'foo'};
+					client.getFeaturesForGroup('foo', params, function () {
+						assert.isTrue(client.get.withArgs('/v2/groups/foo/features', params).calledOnce);
 						done();
 					});
 				});
 
 				it('should callback with a list of feature object', function (done) {
-					client.getFeaturesForGroup('foo', function (err, features) {
+					client.getFeaturesForGroup('foo', {}, function (err, features) {
 						assert.isNull(err);
 						assert.isArray(features);
 						assert.lengthEquals(features, 1);
@@ -276,14 +280,15 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function (done) {
-					client.getFeature('foo', 'bar', function () {
-						assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar').calledOnce);
+					var params = {user_group: 'foo'};
+					client.getFeature('foo', 'bar', params, function () {
+						assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params).calledOnce);
 						done();
 					});
 				});
 
 				it('should callback with a feature object', function (done) {
-					client.getFeature('foo', 'bar', function (err, feature) {
+					client.getFeature('foo', 'bar', {}, function (err, feature) {
 						assert.isNull(err);
 						assert.strictEqual(feature.group, 'foo');
 						assert.strictEqual(feature.name, 'bar');
@@ -316,14 +321,15 @@ describe('client', function () {
 				});
 
 				it('should call `getFeature` with the expected arguments', function (done) {
-					client.isEnabled('foo', 'bar', function () {
-						assert.isTrue(client.getFeature.withArgs('foo', 'bar').calledOnce);
+					var params = {user_group: 'foo'};
+					client.isEnabled('foo', 'bar', params, function () {
+						assert.isTrue(client.getFeature.withArgs('foo', 'bar', params).calledOnce);
 						done();
 					});
 				});
 
 				it('should callback with a boolean', function (done) {
-					client.isEnabled('foo', 'bar', function (err, status) {
+					client.isEnabled('foo', 'bar', {}, function (err, status) {
 						assert.isNull(err);
 						assert.isTrue(status);
 						done();

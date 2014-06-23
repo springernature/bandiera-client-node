@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 				maxcomplexity: 4,
 				maxdepth: 2,
 				maxlen: 100,
-				maxparams: 3,
+				maxparams: 4,
 				maxstatements: 6,
 				node: true,
 				quotmark: 'single'
