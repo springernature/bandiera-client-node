@@ -6,5 +6,4 @@ node_js:
   - "0.10"
 
 # Build script
-before_script: npm install -g grunt-cli
-script: grunt ci
+script: make ci

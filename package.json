@@ -20,19 +20,18 @@
 	"license": "GPL3",
 
 	"dependencies": {
-		"request": "~2.34"
+		"request": "~2.36"
 	},
 	"devDependencies": {
-		"grunt": "~0.4",
-		"grunt-contrib-jshint": "~0.8",
-		"grunt-mocha-test": "~0.9",
+		"jshint": "~2.5",
+		"mocha": "~1.20",
 		"mockery": "~1.4",
 		"proclaim": "~2.0",
-		"sinon": "~1.8"
+		"sinon": "~1.10"
 	},
 
 	"main": "./lib/client.js",
 	"scripts": {
-		"test": "grunt"
+		"test": "make test"
 	}
 }

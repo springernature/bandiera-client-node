@@ -85,15 +85,13 @@ client.isEnabled('group name', 'feature name', params, function (err, enabled) {
 ```
 
 
-Tests
------
+Contributing
+------------
 
-If you would like to contribute please make sure that the tests pass and that the code lints successfully. 
+If you would like to contribute please make sure that the tests pass and that the code lints successfully.
 
 ```sh
-grunt       # Run the lint and test tasks together
-grunt lint  # Run JSHint with the correct config
-grunt test  # Run unit tests
+make lint test
 ```
 
 
