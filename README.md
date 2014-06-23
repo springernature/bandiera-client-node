@@ -5,7 +5,7 @@ Bandiera Client (Node)
 This is a client for talking to the [Bandiera][bandiera] feature flagging service from a [Node.js][node] application.
 This client currently only implements the read methods of the [Bandiera API][bandiera-api].
 
-**Current Version:** *0.0.0*  
+**Current Version:** *2.0.0*  
 **Node Support:** *0.10.x, 0.11.x*  
 **License:** [GPL3][gpl]  
 **Build Status:** [![Build Status][travis-img]][travis]
