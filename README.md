@@ -7,7 +7,7 @@ This client currently only implements the read methods of the [Bandiera API][ban
 
 **Current Version:** *2.0.0*  
 **Node Support:** *0.10.x, 0.11.x*  
-**License:** [GPL3][gpl]  
+**License:** [MIT][mit]  
 **Build Status:** [![Build Status][travis-img]][travis]
 
 
@@ -99,13 +99,13 @@ License
 -------
 
 [Copyright 2014 Nature Publishing Group](LICENSE.txt).  
-Bandiera is licensed under the [GNU General Public License 3.0][gpl].
+Node Bandiera client is licensed under the [MIT License][mit].
 
 
 
 [bandiera]: https://github.com/nature/bandiera
 [bandiera-api]: https://github.com/nature/bandiera/wiki/API-Documentation
-[gpl]: http://www.gnu.org/licenses/gpl-3.0.html
+[mit]: http://opensource.org/licenses/mit-license.php
 [node]: http://nodejs.org
 [travis]: https://travis-ci.org/nature/bandiera-client-node
 [travis-img]: https://travis-ci.org/nature/bandiera-client-node.svg?branch=master
