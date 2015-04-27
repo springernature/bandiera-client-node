@@ -146,24 +146,19 @@ describe('client', function () {
 			});
 
 			describe('#getAll()', function () {
+				var apiResponse;
 
 				beforeEach(function () {
-					sinon.stub(client, 'get');
-					client.get.yieldsAsync(null, {
-						groups: [
-							{
-								name: 'foo',
-								features: [
-									{
-										group: 'foo',
-										name: 'bar',
-										description: 'baz',
-										enabled: true
-									}
-								]
+					apiResponse = {
+						response: {
+							foo: {
+								bar: true,
+								baz: false
 							}
-						]
-					});
+						}
+					};
+					sinon.stub(client, 'get');
+					client.get.yieldsAsync(null, apiResponse);
 				});
 
 				afterEach(function () {
@@ -178,17 +173,10 @@ describe('client', function () {
 					});
 				});
 
-				it('should callback with a map of groups to feature lists', function (done) {
+				it('should callback with the API response', function (done) {
 					client.getAll({}, function (err, groups) {
 						assert.isNull(err);
-						assert.deepEqual(groups, {
-							foo: [{
-								group: 'foo',
-								name: 'bar',
-								description: 'baz',
-								enabled: true
-							}]
-						});
+						assert.deepEqual(groups, apiResponse.response);
 						done();
 					});
 				});
@@ -200,19 +188,17 @@ describe('client', function () {
 			});
 
 			describe('#getFeaturesForGroup()', function () {
+				var apiResponse;
 
 				beforeEach(function () {
+					apiResponse = {
+						response: {
+							foo: true,
+							bar: false
+						}
+					};
 					sinon.stub(client, 'get');
-					client.get.yieldsAsync(null, {
-						features: [
-							{
-								group: 'foo',
-								name: 'bar',
-								description: 'baz',
-								enabled: true
-							}
-						]
-					});
+					client.get.yieldsAsync(null, apiResponse);
 				});
 
 				afterEach(function () {
@@ -227,15 +213,10 @@ describe('client', function () {
 					});
 				});
 
-				it('should callback with a list of feature object', function (done) {
+				it('should callback with the API response', function (done) {
 					client.getFeaturesForGroup('foo', {}, function (err, features) {
 						assert.isNull(err);
-						assert.isArray(features);
-						assert.lengthEquals(features, 1);
-						assert.strictEqual(features[0].group, 'foo');
-						assert.strictEqual(features[0].name, 'bar');
-						assert.strictEqual(features[0].description, 'baz');
-						assert.strictEqual(features[0].enabled, true);
+						assert.deepEqual(features, apiResponse.response);
 						done();
 					});
 				});
@@ -247,17 +228,14 @@ describe('client', function () {
 			});
 
 			describe('#getFeature()', function () {
+				var apiResponse;
 
 				beforeEach(function () {
+					apiResponse = {
+						response: true
+					};
 					sinon.stub(client, 'get');
-					client.get.yieldsAsync(null, {
-						feature: {
-							group: 'foo',
-							name: 'bar',
-							description: 'baz',
-							enabled: true
-						}
-					});
+					client.get.yieldsAsync(null, apiResponse);
 				});
 
 				afterEach(function () {
@@ -275,52 +253,15 @@ describe('client', function () {
 				it('should callback with a feature object', function (done) {
 					client.getFeature('foo', 'bar', {}, function (err, feature) {
 						assert.isNull(err);
-						assert.strictEqual(feature.group, 'foo');
-						assert.strictEqual(feature.name, 'bar');
-						assert.strictEqual(feature.description, 'baz');
-						assert.strictEqual(feature.enabled, true);
+						assert.isTrue(feature);
 						done();
 					});
 				});
 
 			});
 
-			it('should have an `isEnabled` method', function () {
+			it('should have an `isEnabled` method which aliases `getFeature`', function () {
 				assert.isFunction(client.isEnabled);
-			});
-
-			describe('#isEnabled()', function () {
-
-				beforeEach(function () {
-					sinon.stub(client, 'getFeature');
-					client.getFeature.yieldsAsync(null, {
-						group: 'foo',
-						name: 'bar',
-						description: 'baz',
-						enabled: true
-					});
-				});
-
-				afterEach(function () {
-					client.getFeature.restore();
-				});
-
-				it('should call `getFeature` with the expected arguments', function (done) {
-					var params = {user_group: 'foo'};
-					client.isEnabled('foo', 'bar', params, function () {
-						assert.isTrue(client.getFeature.withArgs('foo', 'bar', params).calledOnce);
-						done();
-					});
-				});
-
-				it('should callback with a boolean', function (done) {
-					client.isEnabled('foo', 'bar', {}, function (err, status) {
-						assert.isNull(err);
-						assert.isTrue(status);
-						done();
-					});
-				});
-
 			});
 
 		});
