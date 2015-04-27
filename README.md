@@ -40,47 +40,37 @@ Get features for all groups:
 ```js
 client.getAll(params, function (err, groups) {
     /*
-    groups = {
-        'group name': [
-            {group: 'group name', name: String, description: String, enabled: Boolean}, 
+    groups == {
+        group_name: {
+            feature_name: Boolean,
             ...
-        ],
-        ... 
+        },
+        ...
     }
-	 */
+    */
 });
 ```
 
 Get features for a group:
 
 ```js
-client.getFeaturesForGroup('group name', params, function (err, features) {
-	/*
-    features = [
-        {group: 'group name', name: String, description: String, enabled: Boolean}, 
+client.getFeaturesForGroup('group_name', params, function (err, features) {
+    /*
+    features == {
+        feature_name: Boolean,
         ...
-    ]
-     */
+    }
+    */
 });
 ```
 
 Get an individual feature:
 
 ```js
-client.getFeature('group name', 'feature name', params, function (err, feature) {
+client.getFeature('group_name', 'feature_name', params, function (err, feature) {
     /*
-    feature = {group: 'group name', name: 'feature name', description: String, enabled: Boolean}
-     */
-});
-```
-
-Get the status of an individual feature:
-
-```js
-client.isEnabled('group name', 'feature name', params, function (err, enabled) {
-	/*
-    enabled = Boolean   
-     */
+    feature = Boolean
+    */
 });
 ```
 
