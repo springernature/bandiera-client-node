@@ -23,14 +23,14 @@
 		"node": ">=0.10"
 	},
 	"dependencies": {
-		"request": "~2.36"
+		"request": "~2.55"
 	},
 	"devDependencies": {
-		"jshint": "~2.5",
-		"mocha": "~1.20",
+		"jshint": "~2.7",
+		"mocha": "~2.2",
 		"mockery": "~1.4",
-		"proclaim": "~2.0",
-		"sinon": "~1.10"
+		"proclaim": "~3.2",
+		"sinon": "~1.14"
 	},
 
 	"main": "./lib/client.js",
