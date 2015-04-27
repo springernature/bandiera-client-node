@@ -4,6 +4,7 @@
 
 var assert = require('proclaim');
 var mockery = require('mockery');
+var pkg = require('../../package.json');
 var sinon = require('sinon');
 
 describe('client', function () {
@@ -95,6 +96,9 @@ describe('client', function () {
 						assert.deepEqual(request.firstCall.args[0], {
 							method: 'GET',
 							uri: 'http://bandiera/api/v2/all',
+							headers: {
+								'User-Agent': 'Bandiera Node.js Client / ' + pkg.version
+							},
 							qs: {
 								user_group: 'foo'
 							},
