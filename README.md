@@ -6,7 +6,7 @@ This is a client for talking to the [Bandiera][bandiera] feature flagging servic
 This client currently only implements the read methods of the [Bandiera API][bandiera-api].
 
 **Current Version:** *2.1.0*  
-**Node Support:** *0.10.x, 0.11.x*  
+**Node Support:** *0.10.x, 0.12.x*  
 **License:** [MIT][mit]  
 **Build Status:** [![Build Status][travis-img]][travis]
 
