@@ -79,34 +79,44 @@ describe('client', function () {
 				assert.isFunction(client.get);
 			});
 
-			describe('#get() (successful)', function () {
+			describe('.get() when request is successful', function () {
 
 				beforeEach(function () {
-					request.yieldsAsync(null, {statusCode: 200}, {foo: 'bar'});
+					request.yieldsAsync(null, {statusCode: 200}, {
+						response: {
+							foo: 'bar'
+						}
+					});
 				});
 
 				it('should call `request` with the expected arguments', function (done) {
 					client.get('/v2/all', {user_group: 'foo'}, function () {
 						assert.isTrue(request.calledOnce);
-						assert.strictEqual(request.firstCall.args[0].uri, 'http://bandiera/api/v2/all');
-						assert.isObject(request.firstCall.args[0].qs);
-						assert.strictEqual(request.firstCall.args[0].qs.user_group, 'foo');
-						assert.isTrue(request.firstCall.args[0].json);
+						assert.deepEqual(request.firstCall.args[0], {
+							method: 'GET',
+							uri: 'http://bandiera/api/v2/all',
+							qs: {
+								user_group: 'foo'
+							},
+							json: true
+						});
 						done();
 					});
 				});
 
 				it('should callback with the expected arguments', function (done) {
-					client.get('/v2/all', {}, function (err, body) {
+					client.get('/v2/all', {}, function (err, response) {
 						assert.strictEqual(err, null);
-						assert.strictEqual(body.foo, 'bar');
+						assert.deepEqual(response, {
+							foo: 'bar'
+						});
 						done();
 					});
 				});
 
 			});
 
-			describe('#get() (unsuccessful)', function () {
+			describe('.get() when request is unsuccessful', function () {
 				var requestError;
 
 				beforeEach(function () {
@@ -123,7 +133,7 @@ describe('client', function () {
 
 			});
 
-			describe('#get() (non-200 status)', function () {
+			describe('.get() when response has a non-200 status', function () {
 
 				beforeEach(function () {
 					request.yieldsAsync(null, {
@@ -145,40 +155,22 @@ describe('client', function () {
 				assert.isFunction(client.getAll);
 			});
 
-			describe('#getAll()', function () {
-				var apiResponse;
+			describe('.getAll()', function () {
+				var params, callback;
 
 				beforeEach(function () {
-					apiResponse = {
-						response: {
-							foo: {
-								bar: true,
-								baz: false
-							}
-						}
-					};
+					params = {user_group: 'foo'};
+					callback = sinon.spy();
 					sinon.stub(client, 'get');
-					client.get.yieldsAsync(null, apiResponse);
+					client.getAll(params, callback);
 				});
 
 				afterEach(function () {
 					client.get.restore();
 				});
 
-				it('should call `get` with the expected arguments', function (done) {
-					var params = {user_group: 'foo'};
-					client.getAll(params, function () {
-						assert.isTrue(client.get.withArgs('/v2/all', params).calledOnce);
-						done();
-					});
-				});
-
-				it('should callback with the API response', function (done) {
-					client.getAll({}, function (err, groups) {
-						assert.isNull(err);
-						assert.deepEqual(groups, apiResponse.response);
-						done();
-					});
+				it('should call `get` with the expected arguments', function () {
+					assert.isTrue(client.get.withArgs('/v2/all', params, callback).calledOnce);
 				});
 
 			});
@@ -187,38 +179,22 @@ describe('client', function () {
 				assert.isFunction(client.getFeaturesForGroup);
 			});
 
-			describe('#getFeaturesForGroup()', function () {
-				var apiResponse;
+			describe('.getFeaturesForGroup()', function () {
+				var params, callback;
 
 				beforeEach(function () {
-					apiResponse = {
-						response: {
-							foo: true,
-							bar: false
-						}
-					};
+					params = {user_group: 'foo'};
+					callback = sinon.spy();
 					sinon.stub(client, 'get');
-					client.get.yieldsAsync(null, apiResponse);
+					client.getFeaturesForGroup('foo', params, callback);
 				});
 
 				afterEach(function () {
 					client.get.restore();
 				});
 
-				it('should call `get` with the expected arguments', function (done) {
-					var params = {user_group: 'foo'};
-					client.getFeaturesForGroup('foo', params, function () {
-						assert.isTrue(client.get.withArgs('/v2/groups/foo/features', params).calledOnce);
-						done();
-					});
-				});
-
-				it('should callback with the API response', function (done) {
-					client.getFeaturesForGroup('foo', {}, function (err, features) {
-						assert.isNull(err);
-						assert.deepEqual(features, apiResponse.response);
-						done();
-					});
+				it('should call `get` with the expected arguments', function () {
+					assert.isTrue(client.get.withArgs('/v2/groups/foo/features', params, callback).calledOnce);
 				});
 
 			});
@@ -227,35 +203,22 @@ describe('client', function () {
 				assert.isFunction(client.getFeature);
 			});
 
-			describe('#getFeature()', function () {
-				var apiResponse;
+			describe('.getFeature()', function () {
+				var params, callback;
 
 				beforeEach(function () {
-					apiResponse = {
-						response: true
-					};
+					params = {user_group: 'foo'};
+					callback = sinon.spy();
 					sinon.stub(client, 'get');
-					client.get.yieldsAsync(null, apiResponse);
+					client.getFeature('foo', 'bar', params, callback);
 				});
 
 				afterEach(function () {
 					client.get.restore();
 				});
 
-				it('should call `get` with the expected arguments', function (done) {
-					var params = {user_group: 'foo'};
-					client.getFeature('foo', 'bar', params, function () {
-						assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params).calledOnce);
-						done();
-					});
-				});
-
-				it('should callback with a feature object', function (done) {
-					client.getFeature('foo', 'bar', {}, function (err, feature) {
-						assert.isNull(err);
-						assert.isTrue(feature);
-						done();
-					});
+				it('should call `get` with the expected arguments', function () {
+					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params, callback).calledOnce);
 				});
 
 			});
