@@ -146,9 +146,41 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, function (err) {
+					client.get('/v2/all', {statusCode: 200}, function (err) {
 						assert.isNotNull(err);
 						assert.strictEqual(err.message, 'Request was unsuccessful');
+						done();
+					});
+				});
+
+			});
+
+			describe('.get() when response is not valid JSON', function () {
+
+				beforeEach(function () {
+					request.yieldsAsync(null, {statusCode: 200}, 'foo');
+				});
+
+				it('should callback with the expected error', function (done) {
+					client.get('/v2/all', {}, function (err) {
+						assert.isNotNull(err);
+						assert.strictEqual(err.message, 'API responded with invalid JSON: non-object');
+						done();
+					});
+				});
+
+			});
+
+			describe('.get() when response does not have the expected `response` property', function () {
+
+				beforeEach(function () {
+					request.yieldsAsync(null, {statusCode: 200}, {});
+				});
+
+				it('should callback with the expected error', function (done) {
+					client.get('/v2/all', {}, function (err) {
+						assert.isNotNull(err);
+						assert.strictEqual(err.message, 'API responded with invalid JSON: missing response property');
 						done();
 					});
 				});

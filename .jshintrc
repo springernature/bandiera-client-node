@@ -2,11 +2,11 @@
 	"es3": false,
 	"indent": 4,
 	"latedef": false,
-	"maxcomplexity": 4,
+	"maxcomplexity": 6,
 	"maxdepth": 2,
 	"maxlen": 100,
 	"maxparams": 4,
-	"maxstatements": 6,
+	"maxstatements": 8,
 	"node": true,
 	"quotmark": "single"
 }
