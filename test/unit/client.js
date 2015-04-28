@@ -91,7 +91,7 @@ describe('client', function () {
 				});
 
 				it('should call `request` with the expected arguments', function (done) {
-					client.get('/v2/all', {user_group: 'foo'}, function () {
+					client.get('/v2/all', {user_group: 'foo'}, {}, function () {
 						assert.isTrue(request.calledOnce);
 						assert.deepEqual(request.firstCall.args[0], {
 							method: 'GET',
@@ -109,7 +109,7 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected arguments', function (done) {
-					client.get('/v2/all', {}, function (err, response) {
+					client.get('/v2/all', {}, {}, function (err, response) {
 						assert.strictEqual(err, null);
 						assert.deepEqual(response, {
 							foo: 'bar'
@@ -129,8 +129,16 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, function (err) {
+					client.get('/v2/all', {}, {}, function (err) {
 						assert.strictEqual(err, requestError);
+						done();
+					});
+				});
+
+				it('should callback the default response value', function (done) {
+					var defaultResponse = {defaultResponse: true};
+					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+						assert.strictEqual(response, defaultResponse);
 						done();
 					});
 				});
@@ -146,9 +154,17 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {statusCode: 200}, function (err) {
+					client.get('/v2/all', {statusCode: 200}, {}, function (err) {
 						assert.isNotNull(err);
 						assert.strictEqual(err.message, 'Request was unsuccessful');
+						done();
+					});
+				});
+
+				it('should callback the default response value', function (done) {
+					var defaultResponse = {defaultResponse: true};
+					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+						assert.strictEqual(response, defaultResponse);
 						done();
 					});
 				});
@@ -162,9 +178,17 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, function (err) {
+					client.get('/v2/all', {}, {}, function (err) {
 						assert.isNotNull(err);
 						assert.strictEqual(err.message, 'API responded with invalid JSON: non-object');
+						done();
+					});
+				});
+
+				it('should callback the default response value', function (done) {
+					var defaultResponse = {defaultResponse: true};
+					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+						assert.strictEqual(response, defaultResponse);
 						done();
 					});
 				});
@@ -178,9 +202,17 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, function (err) {
+					client.get('/v2/all', {}, {}, function (err) {
 						assert.isNotNull(err);
 						assert.strictEqual(err.message, 'API responded with invalid JSON: missing response property');
+						done();
+					});
+				});
+
+				it('should callback the default response value', function (done) {
+					var defaultResponse = {defaultResponse: true};
+					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+						assert.strictEqual(response, defaultResponse);
 						done();
 					});
 				});
@@ -206,7 +238,7 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/all', params, callback).calledOnce);
+					assert.isTrue(client.get.withArgs('/v2/all', params, {}, callback).calledOnce);
 				});
 
 			});
@@ -230,7 +262,7 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/groups/foo/features', params, callback).calledOnce);
+					assert.isTrue(client.get.withArgs('/v2/groups/foo/features', params, {}, callback).calledOnce);
 				});
 
 			});
@@ -239,15 +271,13 @@ describe('client', function () {
 				assert.isFunction(client.getFeature);
 			});
 
-			describe('.getFeature() when the request is successful', function () {
+			describe('.getFeature()', function () {
 				var params, callback;
 
-				beforeEach(function (done) {
+				beforeEach(function () {
 					params = {user_group: 'foo'};
-					callback = sinon.spy(function () {
-						done();
-					});
-					sinon.stub(client, 'get').yields(null, true);
+					callback = sinon.spy();
+					sinon.stub(client, 'get');
 					client.getFeature('foo', 'bar', params, callback);
 				});
 
@@ -256,38 +286,7 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params).calledOnce);
-				});
-
-				it('should callback with the expected response', function () {
-				    assert.isTrue(callback.withArgs(null, true).calledOnce);
-				});
-
-			});
-
-			describe('.getFeature() when the request is unsuccessful', function () {
-				var error, params, callback;
-
-				beforeEach(function (done) {
-					error = new Error('...');
-					params = {user_group: 'foo'};
-					callback = sinon.spy(function () {
-						done();
-					});
-					sinon.stub(client, 'get').yields(error, {});
-					client.getFeature('foo', 'bar', params, callback);
-				});
-
-				afterEach(function () {
-					client.get.restore();
-				});
-
-				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params).calledOnce);
-				});
-
-				it('should callback with the expected response', function () {
-				    assert.isTrue(callback.withArgs(error, false).calledOnce);
+					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params, false, callback).calledOnce);
 				});
 
 			});
