@@ -8,7 +8,7 @@ var pkg = require('../../package.json');
 var sinon = require('sinon');
 
 describe('client', function () {
-	var mod, request;
+	var bandiera, request;
 
 	beforeEach(function () {
 		mockery.enable({
@@ -18,7 +18,7 @@ describe('client', function () {
 		});
 		request = sinon.stub();
 		mockery.registerMock('request', request);
-		mod = require('../../lib/client');
+		bandiera = require('../../lib/client');
 	});
 
 	afterEach(function () {
@@ -26,31 +26,31 @@ describe('client', function () {
 	});
 
 	it('should be an object', function () {
-		assert.isObject(mod);
+		assert.isObject(bandiera);
 	});
 
 	describe('.createClient()', function () {
 
 		beforeEach(function () {
-			sinon.spy(mod, 'Client');
+			sinon.spy(bandiera, 'Client');
 		});
 
 		afterEach(function () {
-			mod.Client.restore();
+			bandiera.Client.restore();
 		});
 
 		it('should be a function', function () {
-			assert.isFunction(mod.createClient);
+			assert.isFunction(bandiera.createClient);
 		});
 
-		it('should return a `mod.Client` instance', function () {
-			assert.isInstanceOf(mod.createClient('foo'), mod.Client);
+		it('should return a `bandiera.Client` instance', function () {
+			assert.isInstanceOf(bandiera.createClient('foo'), bandiera.Client);
 		});
 
-		it('should create a `mod.Client` instance with the expected arguments', function () {
-			mod.createClient('foo');
-			assert.isTrue(mod.Client.calledWithNew());
-			assert.isTrue(mod.Client.withArgs('foo').calledOnce);
+		it('should create a `bandiera.Client` instance with the expected arguments', function () {
+			bandiera.createClient('foo');
+			assert.isTrue(bandiera.Client.calledWithNew());
+			assert.isTrue(bandiera.Client.withArgs('foo').calledOnce);
 		});
 
 	});
@@ -58,18 +58,18 @@ describe('client', function () {
 	describe('.Client()', function () {
 
 		it('should be a function', function () {
-			assert.isFunction(mod.Client);
+			assert.isFunction(bandiera.Client);
 		});
 
 		it('should return an object', function () {
-			assert.isObject(new mod.Client('http://bandiera/api'));
+			assert.isObject(new bandiera.Client('http://bandiera/api'));
 		});
 
 		describe('returned object', function () {
 			var client;
 
 			beforeEach(function () {
-				client = new mod.Client('http://bandiera/api');
+				client = new bandiera.Client('http://bandiera/api');
 			});
 
 			it('should have a `baseUri` property matching the baseUri it was constructed with', function () {
@@ -109,8 +109,8 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected arguments', function (done) {
-					client.get('/v2/all', {}, {}, function (err, response) {
-						assert.strictEqual(err, null);
+					client.get('/v2/all', {}, {}, function (error, response) {
+						assert.strictEqual(error, null);
 						assert.deepEqual(response, {
 							foo: 'bar'
 						});
@@ -129,15 +129,15 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, {}, function (err) {
-						assert.strictEqual(err, requestError);
+					client.get('/v2/all', {}, {}, function (error) {
+						assert.strictEqual(error, requestError);
 						done();
 					});
 				});
 
 				it('should callback the default response value', function (done) {
 					var defaultResponse = {defaultResponse: true};
-					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+					client.get('/v2/all', {}, defaultResponse, function (error, response) {
 						assert.strictEqual(response, defaultResponse);
 						done();
 					});
@@ -154,16 +154,16 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {statusCode: 200}, {}, function (err) {
-						assert.isNotNull(err);
-						assert.strictEqual(err.message, 'Request was unsuccessful');
+					client.get('/v2/all', {statusCode: 200}, {}, function (error) {
+						assert.isNotNull(error);
+						assert.strictEqual(error.message, 'Request was unsuccessful');
 						done();
 					});
 				});
 
 				it('should callback the default response value', function (done) {
 					var defaultResponse = {defaultResponse: true};
-					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+					client.get('/v2/all', {}, defaultResponse, function (error, response) {
 						assert.strictEqual(response, defaultResponse);
 						done();
 					});
@@ -178,16 +178,16 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, {}, function (err) {
-						assert.isNotNull(err);
-						assert.strictEqual(err.message, 'API responded with invalid JSON: non-object');
+					client.get('/v2/all', {}, {}, function (error) {
+						assert.isNotNull(error);
+						assert.strictEqual(error.message, 'API responded with invalid JSON: non-object');
 						done();
 					});
 				});
 
 				it('should callback the default response value', function (done) {
 					var defaultResponse = {defaultResponse: true};
-					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+					client.get('/v2/all', {}, defaultResponse, function (error, response) {
 						assert.strictEqual(response, defaultResponse);
 						done();
 					});
@@ -202,16 +202,16 @@ describe('client', function () {
 				});
 
 				it('should callback with the expected error', function (done) {
-					client.get('/v2/all', {}, {}, function (err) {
-						assert.isNotNull(err);
-						assert.strictEqual(err.message, 'API responded with invalid JSON: missing response property');
+					client.get('/v2/all', {}, {}, function (error) {
+						assert.isNotNull(error);
+						assert.strictEqual(error.message, 'API responded with invalid JSON: missing response property');
 						done();
 					});
 				});
 
 				it('should callback the default response value', function (done) {
 					var defaultResponse = {defaultResponse: true};
-					client.get('/v2/all', {}, defaultResponse, function (err, response) {
+					client.get('/v2/all', {}, defaultResponse, function (error, response) {
 						assert.strictEqual(response, defaultResponse);
 						done();
 					});
@@ -224,13 +224,13 @@ describe('client', function () {
 			});
 
 			describe('.getAll()', function () {
-				var params, callback;
+				var parameters, callback;
 
 				beforeEach(function () {
-					params = {user_group: 'foo'};
+					parameters = {user_group: 'foo'};
 					callback = sinon.spy();
 					sinon.stub(client, 'get');
-					client.getAll(params, callback);
+					client.getAll(parameters, callback);
 				});
 
 				afterEach(function () {
@@ -238,7 +238,7 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/all', params, {}, callback).calledOnce);
+					assert.isTrue(client.get.withArgs('/v2/all', parameters, {}, callback).calledOnce);
 				});
 
 			});
@@ -248,13 +248,13 @@ describe('client', function () {
 			});
 
 			describe('.getFeaturesForGroup()', function () {
-				var params, callback;
+				var parameters, callback;
 
 				beforeEach(function () {
-					params = {user_group: 'foo'};
+					parameters = {user_group: 'foo'};
 					callback = sinon.spy();
 					sinon.stub(client, 'get');
-					client.getFeaturesForGroup('foo', params, callback);
+					client.getFeaturesForGroup('foo', parameters, callback);
 				});
 
 				afterEach(function () {
@@ -262,7 +262,7 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/groups/foo/features', params, {}, callback).calledOnce);
+					assert.isTrue(client.get.withArgs('/v2/groups/foo/features', parameters, {}, callback).calledOnce);
 				});
 
 			});
@@ -272,13 +272,13 @@ describe('client', function () {
 			});
 
 			describe('.getFeature()', function () {
-				var params, callback;
+				var parameters, callback;
 
 				beforeEach(function () {
-					params = {user_group: 'foo'};
+					parameters = {user_group: 'foo'};
 					callback = sinon.spy();
 					sinon.stub(client, 'get');
-					client.getFeature('foo', 'bar', params, callback);
+					client.getFeature('foo', 'bar', parameters, callback);
 				});
 
 				afterEach(function () {
@@ -286,7 +286,7 @@ describe('client', function () {
 				});
 
 				it('should call `get` with the expected arguments', function () {
-					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', params, false, callback).calledOnce);
+					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', parameters, false, callback).calledOnce);
 				});
 
 			});
@@ -301,7 +301,7 @@ describe('client', function () {
 			var client;
 
 			beforeEach(function () {
-				client = new mod.Client();
+				client = new bandiera.Client();
 			});
 
 			it('should have a `baseUri` of "http://localhost/api"', function () {
@@ -314,7 +314,7 @@ describe('client', function () {
 			var client;
 
 			beforeEach(function () {
-				client = new mod.Client('http://bandiera');
+				client = new bandiera.Client('http://bandiera');
 			});
 
 			it('should have a `baseUri` property with "/api" appended', function () {
