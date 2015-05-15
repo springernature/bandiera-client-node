@@ -88,7 +88,7 @@ make lint test
 License
 -------
 
-[Copyright 2014 Nature Publishing Group](LICENSE.txt).  
+[Copyright 2015 Nature Publishing Group](LICENSE.txt).  
 Node Bandiera client is licensed under the [MIT License][mit].
 
 
