@@ -21,8 +21,8 @@ npm install bandiera-client
 or add `bandiera-client` to your `package.json` file.
 
 
-Examples
---------
+Usage
+-----
 
 Create an instance of the bandiera client:
 
