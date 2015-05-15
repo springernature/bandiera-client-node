@@ -5,10 +5,11 @@ Bandiera Client (Node)
 This is a client for talking to the [Bandiera][bandiera] feature flagging service from a [Node.js][node] application.
 This client currently only implements the read methods of the [v2 Bandiera API][bandiera-api].
 
-**Current Version:** *2.2.0*  
-**Node Support:** *0.10.x, 0.12.x*  
-**License:** [MIT][mit]  
-**Build Status:** [![Build Status][travis-img]][travis]
+[![NPM version][shield-npm]][info-npm]
+[![Node.js version support][shield-node]][info-node]
+[![Build status][shield-build]][info-build]
+[![Dependencies][shield-dependencies]][info-dependencies]
+[![MIT licensed][shield-license]][info-license]
 
 
 Installation
@@ -88,14 +89,22 @@ make lint test
 License
 -------
 
-[Copyright 2015 Nature Publishing Group](LICENSE.txt).  
-Node Bandiera client is licensed under the [MIT License][mit].
+Copyright &copy; 2015 Nature Publishing Group.  
+Node Bandiera client is licensed under the [MIT License][info-license].
 
 
 
 [bandiera]: https://github.com/nature/bandiera
 [bandiera-api]: https://github.com/nature/bandiera/wiki/API-Documentation
-[mit]: http://opensource.org/licenses/mit-license.php
 [node]: http://nodejs.org
-[travis]: https://travis-ci.org/nature/bandiera-client-node
-[travis-img]: https://travis-ci.org/nature/bandiera-client-node.svg?branch=master
+
+[info-dependencies]: https://gemnasium.com/nature/bandiera-client-node
+[info-license]: LICENSE
+[info-node]: package.json
+[info-npm]: https://www.npmjs.com/package/bandiera-client
+[info-build]: https://travis-ci.org/nature/bandiera-client-node
+[shield-dependencies]: https://img.shields.io/gemnasium/nature/bandiera-client-node.svg
+[shield-license]: https://img.shields.io/badge/license-MIT-blue.svg
+[shield-node]: https://img.shields.io/node/v/bandiera-client.svg?label=node.js%20support
+[shield-npm]: https://img.shields.io/npm/v/bandiera-client.svg
+[shield-build]: https://img.shields.io/travis/nature/bandiera-client-node/master.svg
