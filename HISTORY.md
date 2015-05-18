@@ -1,6 +1,13 @@
 
 # History
 
+## 2.3.0 (2015-05-18)
+
+  * Add logging options
+  * Add a timeout option
+  * Documentation improvements
+  * General refactoring
+
 ## 2.2.0 (2015-04-27)
 
   * Make the client compatible with the API
