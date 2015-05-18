@@ -1,6 +1,6 @@
 
-Bandiera Client (Node)
-======================
+Bandiera Client (Node.js)
+=========================
 
 This is a client for talking to the [Bandiera][bandiera] feature flagging service from a [Node.js][node] application.
 This client currently only implements the read methods of the [v2 Bandiera API][bandiera-api].
