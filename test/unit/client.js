@@ -50,6 +50,10 @@ describe('client', function () {
 			assert.isFunction(defaults.logger.warn);
 		});
 
+		it('should have a `timeout` property', function () {
+			assert.strictEqual(defaults.timeout, 400);
+		});
+
 	});
 
 	describe('.createClient()', function () {
@@ -146,7 +150,8 @@ describe('client', function () {
 							qs: {
 								user_group: 'foo'
 							},
-							json: true
+							json: true,
+							timeout: 400
 						});
 						done();
 					});
