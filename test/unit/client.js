@@ -8,7 +8,7 @@ var pkg = require('../../package.json');
 var sinon = require('sinon');
 
 describe('client', function () {
-	var bandiera, request;
+	var bandiera, extend, request;
 
 	beforeEach(function () {
 		mockery.enable({
@@ -16,6 +16,8 @@ describe('client', function () {
 			warnOnUnregistered: false,
 			warnOnReplace: false
 		});
+		extend = sinon.spy(require('node.extend'));
+		mockery.registerMock('node.extend', extend);
 		request = sinon.stub();
 		mockery.registerMock('request', request);
 		bandiera = require('../../lib/client');
@@ -27,6 +29,27 @@ describe('client', function () {
 
 	it('should be an object', function () {
 		assert.isObject(bandiera);
+	});
+
+	describe('.defaults', function () {
+		var defaults;
+
+		beforeEach(function () {
+			defaults = bandiera.defaults;
+		});
+
+		it('should have a `logger` property', function () {
+			assert.isObject(defaults.logger);
+		});
+
+		it('should have a `logger.debug` method', function () {
+			assert.isFunction(defaults.logger.debug);
+		});
+
+		it('should have a `logger.warn` method', function () {
+			assert.isFunction(defaults.logger.warn);
+		});
+
 	});
 
 	describe('.createClient()', function () {
@@ -48,9 +71,10 @@ describe('client', function () {
 		});
 
 		it('should create a `bandiera.Client` instance with the expected arguments', function () {
-			bandiera.createClient('foo');
+			var options = {};
+			bandiera.createClient('foo', options);
 			assert.isTrue(bandiera.Client.calledWithNew());
-			assert.isTrue(bandiera.Client.withArgs('foo').calledOnce);
+			assert.isTrue(bandiera.Client.withArgs('foo', options).calledOnce);
 		});
 
 	});
@@ -61,19 +85,39 @@ describe('client', function () {
 			assert.isFunction(bandiera.Client);
 		});
 
+		it('should default the options', function () {
+			var options = {};
+			new bandiera.Client('foo', options);
+			assert.isTrue(extend.calledOnce);
+			assert.isTrue(extend.firstCall.args[0]);
+			assert.isObject(extend.firstCall.args[1]);
+			assert.strictEqual(extend.firstCall.args[2], bandiera.defaults);
+			assert.strictEqual(extend.firstCall.args[3], options);
+		});
+
 		it('should return an object', function () {
 			assert.isObject(new bandiera.Client('http://bandiera/api'));
 		});
 
 		describe('returned object', function () {
-			var client;
+			var client, options;
 
 			beforeEach(function () {
-				client = new bandiera.Client('http://bandiera/api');
+				options = {
+					logger: {
+						debug: sinon.spy(),
+						warn: sinon.spy()
+					}
+				};
+				client = new bandiera.Client('http://bandiera/api', options);
 			});
 
 			it('should have a `baseUri` property matching the baseUri it was constructed with', function () {
 				assert.strictEqual(client.baseUri, 'http://bandiera/api');
+			});
+
+			it('should have a `logger` property matching the passed in logger', function () {
+				assert.deepEqual(client.logger, options.logger);
 			});
 
 			it('should have a `get` method', function () {
@@ -118,6 +162,13 @@ describe('client', function () {
 					});
 				});
 
+				it('should log a success message', function (done) {
+					client.get('/v2/all', {foo: 'bar'}, {}, function () {
+						assert.isTrue(client.logger.debug.withArgs('[BandieraClient] calling "%s" with params "%s"', '/v2/all', 'foo=bar').calledOnce);
+						done();
+					});
+				});
+
 			});
 
 			describe('.get() when request is unsuccessful', function () {
@@ -139,6 +190,13 @@ describe('client', function () {
 					var defaultResponse = {defaultResponse: true};
 					client.get('/v2/all', {}, defaultResponse, function (error, response) {
 						assert.strictEqual(response, defaultResponse);
+						done();
+					});
+				});
+
+				it('should log a warning', function (done) {
+					client.get('/v2/all', {foo: 'bar'}, {}, function (error) {
+						assert.isTrue(client.logger.warn.withArgs('[BandieraClient] calling "%s" with params "%s": %s', '/v2/all', 'foo=bar', error.stack).calledOnce);
 						done();
 					});
 				});
