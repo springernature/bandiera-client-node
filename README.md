@@ -95,6 +95,10 @@ A logging function which will be called with debug messages. This should accept 
 
 A logging function which will be called with warning messages. This should accept the same arguments as `console.log`. Defaults to an empty function.
 
+### `timeout` (number)
+
+A timeout (in milliseconds) after which an API request should fail. Defaults to `400`.
+
 
 Contributing
 ------------
