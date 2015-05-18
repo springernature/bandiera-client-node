@@ -76,6 +76,26 @@ client.getFeature('group_name', 'feature_name', params, function (err, feature) 
 ```
 
 
+Options
+-------
+
+The Node.js Bandiera client also accepts options in construction which allow you to tweak the client's behaviour:
+
+```js
+var client = bandiera.createClient('http://your-bandiera-server.com', {
+    // options go here
+});
+```
+
+### `logger.debug` (function)
+
+A logging function which will be called with debug messages. This should accept the same arguments as `console.log`. Defaults to an empty function.
+
+### `logger.warn` (function)
+
+A logging function which will be called with warning messages. This should accept the same arguments as `console.log`. Defaults to an empty function.
+
+
 Contributing
 ------------
 
