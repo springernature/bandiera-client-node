@@ -87,11 +87,11 @@ var client = bandiera.createClient('http://your-bandiera-server.com', {
 });
 ```
 
-### `log.debug` (function)
+### `logger.debug` (function)
 
 A logging function which will be called with debug messages. This should accept the same arguments as `console.log`. Defaults to an empty function.
 
-### `log.warn` (function)
+### `logger.warn` (function)
 
 A logging function which will be called with warning messages. This should accept the same arguments as `console.log`. Defaults to an empty function.
 
