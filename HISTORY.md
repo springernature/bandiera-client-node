@@ -1,6 +1,10 @@
 
 # History
 
+## 2.3.1 (2015-07-07)
+
+  * Update dependencies
+
 ## 2.3.0 (2015-05-18)
 
   * Add logging options
