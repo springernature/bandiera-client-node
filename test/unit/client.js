@@ -219,7 +219,7 @@ describe('client', function () {
 				it('should callback with the expected error', function (done) {
 					client.get('/v2/all', {statusCode: 200}, {}, function (error) {
 						assert.isNotNull(error);
-						assert.strictEqual(error.message, 'Request was unsuccessful');
+						assert.strictEqual(error.message, 'Request was unsuccessful: response status was 400');
 						done();
 					});
 				});
