@@ -304,6 +304,21 @@ describe('client', function () {
 					assert.isTrue(client.get.withArgs('/v2/all', parameters, {}, callback).calledOnce);
 				});
 
+				describe('without parameters', function () {
+
+					beforeEach(function () {
+						client.get.restore();
+						callback = sinon.spy();
+						sinon.stub(client, 'get');
+						client.getAll(callback);
+					});
+
+					it('should call `get` with the expected arguments', function () {
+						assert.isTrue(client.get.withArgs('/v2/all', {}, {}, callback).calledOnce);
+					});
+
+				});
+
 			});
 
 			it('should have a `getFeaturesForGroup` method', function () {
@@ -328,6 +343,21 @@ describe('client', function () {
 					assert.isTrue(client.get.withArgs('/v2/groups/foo/features', parameters, {}, callback).calledOnce);
 				});
 
+				describe('without parameters', function () {
+
+					beforeEach(function () {
+						client.get.restore();
+						callback = sinon.spy();
+						sinon.stub(client, 'get');
+						client.getFeaturesForGroup('foo', callback);
+					});
+
+					it('should call `get` with the expected arguments', function () {
+						assert.isTrue(client.get.withArgs('/v2/groups/foo/features', {}, {}, callback).calledOnce);
+					});
+
+				});
+
 			});
 
 			it('should have a `getFeature` method', function () {
@@ -350,6 +380,21 @@ describe('client', function () {
 
 				it('should call `get` with the expected arguments', function () {
 					assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', parameters, false, callback).calledOnce);
+				});
+
+				describe('without parameters', function () {
+
+					beforeEach(function () {
+						client.get.restore();
+						callback = sinon.spy();
+						sinon.stub(client, 'get');
+						client.getFeature('foo', 'bar', callback);
+					});
+
+					it('should call `get` with the expected arguments', function () {
+						assert.isTrue(client.get.withArgs('/v2/groups/foo/features/bar', {}, false, callback).calledOnce);
+					});
+
 				});
 
 			});

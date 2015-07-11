@@ -34,12 +34,12 @@ var client = bandiera.createClient('http://your-bandiera-server.com');
 
 Each method of the client requires a callback. These callbacks accept two arguments, the first is an error object or `null` the second contains the response.
 
-In the examples below, `params` is an object containing query parameters to send as part of the request to Bandiera. See the [API documentation][bandiera-api] for available parameters.
+In the examples below, `params` is an object containing query parameters to send as part of the request to Bandiera. This argument is optional in all of the client methods. See the [API documentation][bandiera-api] for available parameters.
 
 Get features for all groups:
 
 ```js
-client.getAll(params, function (err, groups) {
+client.getAll(params, function (error, groups) {
     /*
     groups == {
         group_name: {
@@ -50,18 +50,30 @@ client.getAll(params, function (err, groups) {
     }
     */
 });
+
+// or
+
+client.getAll(function (error, groups) {
+    // ...
+});
 ```
 
 Get features for a group:
 
 ```js
-client.getFeaturesForGroup('group_name', params, function (err, features) {
+client.getFeaturesForGroup('group_name', params, function (error, features) {
     /*
     features == {
         feature_name: Boolean,
         ...
     }
     */
+});
+
+// or
+
+client.getFeaturesForGroup('group_name', function (error, features) {
+    // ...
 });
 ```
 
@@ -72,6 +84,12 @@ client.getFeature('group_name', 'feature_name', params, function (err, feature) 
     /*
     feature = Boolean
     */
+});
+
+// or
+
+client.getFeature('group_name', 'feature_name', function (err, feature) {
+    // ...
 });
 ```
 
