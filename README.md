@@ -80,7 +80,7 @@ client.getFeaturesForGroup('group_name', function (error, features) {
 Get an individual feature:
 
 ```js
-client.getFeature('group_name', 'feature_name', params, function (err, feature) {
+client.getFeature('group_name', 'feature_name', params, function (error, feature) {
     /*
     feature = Boolean
     */
@@ -88,7 +88,7 @@ client.getFeature('group_name', 'feature_name', params, function (err, feature) 
 
 // or
 
-client.getFeature('group_name', 'feature_name', function (err, feature) {
+client.getFeature('group_name', 'feature_name', function (error, feature) {
     // ...
 });
 ```
