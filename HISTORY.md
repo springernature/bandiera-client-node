@@ -1,6 +1,11 @@
 
 # History
 
+## 2.4.0 (2015-07-13)
+
+  * Make `params` an optional argument across the library
+  * Output more useful error messages
+
 ## 2.3.1 (2015-07-07)
 
   * Update dependencies
