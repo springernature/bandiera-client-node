@@ -27,6 +27,7 @@
 		"request": "~2.61"
 	},
 	"devDependencies": {
+		"jscs": "^2",
 		"jshint": "^2",
 		"mocha": "^2",
 		"mockery": "~1.4",
