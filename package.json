@@ -27,6 +27,7 @@
 		"request": "~2.61"
 	},
 	"devDependencies": {
+		"istanbul": "~0.3",
 		"jscs": "^2",
 		"jshint": "^2",
 		"mocha": "^2",

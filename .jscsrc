@@ -81,6 +81,7 @@
 	"validateQuoteMarks": "'",
 
 	"excludeFiles": [
+		"coverage",
 		"node_modules"
 	]
 }
