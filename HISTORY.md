@@ -1,6 +1,12 @@
 
 # History
 
+## 2.4.1 (2015-09-08)
+
+  * Update dependencies
+  * Run JavaScript through JSCS
+  * Add code coverage reporting
+
 ## 2.4.0 (2015-07-13)
 
   * Make `params` an optional argument across the library
