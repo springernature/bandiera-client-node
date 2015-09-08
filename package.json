@@ -24,7 +24,7 @@
 	},
 	"dependencies": {
 		"node.extend": "~1.1",
-		"request": "~2.58"
+		"request": "~2.61"
 	},
 	"devDependencies": {
 		"jshint": "^2",
