@@ -2,9 +2,10 @@
 # Language/versions
 language: node_js
 node_js:
-  - "4.0"
-  - "0.12"
-  - "0.10"
+  - '5'
+  - '4'
+  - '0.12'
+  - '0.10'
 
 # Build only master, version tags, and pull-requests
 branches:
