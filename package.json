@@ -1,6 +1,6 @@
 {
 	"name": "bandiera-client",
-	"version": "2.4.2",
+	"version": "2.4.3",
 
 	"description": "Bandiera is a simple, stand-alone feature flagging service that is not tied to any existing web framework or language. This is a client for talking to the web service.",
 	"keywords": [ "feature", "flagging" ],
