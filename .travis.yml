@@ -1,22 +1,31 @@
 
-# Language/versions
+# Build matrix
 language: node_js
-node_js:
-  - '5'
-  - '4'
-  - '0.12'
-  - '0.10'
+matrix:
+  include:
 
-# Build only master, version tags, and pull-requests
+    # Run linter once
+    - node_js: '0.12'
+      env: LINT=true
+
+    # Run tests
+    - node_js: '0.10'
+    - node_js: '0.12'
+    - node_js: '4'
+    - node_js: '5'
+
+# Restrict builds on branches
 branches:
   only:
     - master
     - /^\d+\.\d+\.\d+$/
 
+# Before install
+before_install:
+  - npm install coveralls
+
 # Build script
 script:
-  - make ci
-
-# Send notifications to the FEDs slack channel
-notifications:
-  slack: thefeds:vG3hLYB07EwTYpQFp3TNUx82
+  - 'if [ $LINT ]; then make lint; fi'
+  - 'if [ ! $LINT ]; then make test; fi'
+  - 'if [ ! $LINT ]; then cat ./coverage/lcov.info | ./node_modules/.bin/coveralls; fi'
