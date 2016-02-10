@@ -1,6 +1,10 @@
 
 # History
 
+## 2.4.5 (2016-02-10)
+
+  * Fix some broken links
+
 ## 2.4.4 (2016-02-10)
 
   * Update repository references to springernature
