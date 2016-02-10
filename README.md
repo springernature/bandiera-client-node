@@ -136,8 +136,8 @@ Node Bandiera client is licensed under the [MIT License][info-license].
 
 
 
-[bandiera]: https://github.com/springernature/bandiera
-[bandiera-api]: https://github.com/springernature/bandiera/wiki/API-Documentation
+[bandiera]: https://github.com/nature/bandiera
+[bandiera-api]: https://github.com/nature/bandiera/wiki/API-Documentation
 [node]: http://nodejs.org
 
 [info-dependencies]: https://gemnasium.com/springernature/bandiera-client-node
