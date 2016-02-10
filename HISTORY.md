@@ -1,6 +1,11 @@
 
 # History
 
+## 2.4.4 (2016-02-10)
+
+  * Update repository references to springernature
+  * Update the license
+
 ## 2.4.3 (2015-11-09)
 
   * Add Node.js 5.0 support
