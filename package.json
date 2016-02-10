@@ -5,7 +5,7 @@
 	"description": "Bandiera is a simple, stand-alone feature flagging service that is not tied to any existing web framework or language. This is a client for talking to the web service.",
 	"keywords": [ "feature", "flagging" ],
 
-	"author": "Nature Publishing Group",
+	"author": "Springer Nature",
 	"contributors": [
 		"Rowan Manning (http://rowanmanning.com/)",
 		"Andrew Walker (http://www.moddular.org/)"
@@ -13,10 +13,10 @@
 
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/nature/bandiera-client-node.git"
+		"url": "https://github.com/springernature/bandiera-client-node.git"
 	},
-	"homepage": "https://github.com/nature/bandiera-client-node",
-	"bugs": "https://github.com/nature/bandiera-client-node/issues",
+	"homepage": "https://github.com/springernature/bandiera-client-node",
+	"bugs": "https://github.com/springernature/bandiera-client-node/issues",
 	"license": "MIT",
 
 	"engines": {

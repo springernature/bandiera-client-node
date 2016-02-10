@@ -131,22 +131,22 @@ make lint test
 License
 -------
 
-Copyright &copy; 2015 Nature Publishing Group.  
+Copyright &copy; 2015 Springer Nature.  
 Node Bandiera client is licensed under the [MIT License][info-license].
 
 
 
-[bandiera]: https://github.com/nature/bandiera
-[bandiera-api]: https://github.com/nature/bandiera/wiki/API-Documentation
+[bandiera]: https://github.com/springernature/bandiera
+[bandiera-api]: https://github.com/springernature/bandiera/wiki/API-Documentation
 [node]: http://nodejs.org
 
-[info-dependencies]: https://gemnasium.com/nature/bandiera-client-node
+[info-dependencies]: https://gemnasium.com/springernature/bandiera-client-node
 [info-license]: LICENSE
 [info-node]: package.json
 [info-npm]: https://www.npmjs.com/package/bandiera-client
-[info-build]: https://travis-ci.org/nature/bandiera-client-node
-[shield-dependencies]: https://img.shields.io/gemnasium/nature/bandiera-client-node.svg
+[info-build]: https://travis-ci.org/springernature/bandiera-client-node
+[shield-dependencies]: https://img.shields.io/gemnasium/springernature/bandiera-client-node.svg
 [shield-license]: https://img.shields.io/badge/license-MIT-blue.svg
 [shield-node]: https://img.shields.io/badge/node.js%20support-0.10–5-brightgreen.svg
 [shield-npm]: https://img.shields.io/npm/v/bandiera-client.svg
-[shield-build]: https://img.shields.io/travis/nature/bandiera-client-node/master.svg
+[shield-build]: https://img.shields.io/travis/springernature/bandiera-client-node/master.svg
