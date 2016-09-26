@@ -13,6 +13,7 @@ matrix:
     - node_js: '0.12'
     - node_js: '4'
     - node_js: '5'
+    - node_js: '6'
 
 # Restrict builds on branches
 branches:
@@ -29,3 +30,7 @@ script:
   - 'if [ $LINT ]; then make lint; fi'
   - 'if [ ! $LINT ]; then make test; fi'
   #- 'if [ ! $LINT ]; then cat ./coverage/lcov.info | ./node_modules/.bin/coveralls; fi'
+
+notifications:
+  slack:
+    secure: Lxb/T1GaRt2hWEIfX2D4LditSBG+L5J4H46y77NStMNkq6GAM2S4FJnsvrFj9eEGWaHxKpk0+1Qmsd3ODUpLm85efvWxQU1bnHYu7OwZPDCpRYI4dX/vkXA/m54y28zmbJIthQDo83nnodzjbjbBwOUo3hJcUurpWhbvqWTHCOEBMm9X+SXpM9i+3ewXF7Pt9H4+QrUFdBQqV93aMY7UJOL6L+Q8uN3HmxacCcfN0BfpKXpU87J/T7wnNTyL3DGJhCGS36d1G89F3qqIfRYXEhVrUeb7lty4Kav0rrXTVxcNfs2r5r6RtNdHdv2G6yp0U7yY9IzRjxrobS27hirPKpnv+JBvk8/xk7P1pYHipDOS2b8mocfjdKlPVNZ7MutaVwfYgWZsILafUNB7F6DIwor3+yJIXLASJEP1b5FSdLwoQMfipJTYWtI4eukAifTtuUJEC6tAYzvAygoAYZo3XPUhRoV+d1OUhlVzNDVss1m/DQsEXRtZhxK+V3nPw4t4juBFqWrwW336o6G7ogUX1IPH/ojw/h8wKdHtZ873fm6ptAr5SU+n5dbQwc+nginV9NNnSZUI9os7jF54MKZkdJPfZkmVHaP0eMmDNEGHImakVTnd7olWIqXHSSDmiW4N3OgLeZFXHZ/E8vRDARdG4ENVbH53pUAnXRwHCg02HJg=
