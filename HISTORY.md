@@ -1,6 +1,11 @@
 
 # History
 
+## 2.4.6 (2016-09-26)
+
+  * Require `request` 2.74 or greater. Fixes: [https://snyk.io/vuln/npm:request:20160119](https://snyk.io/vuln/npm:request:20160119). Thanks to @benmag1 for the PR.
+  * Add node 6 to the test matrix
+
 ## 2.4.5 (2016-02-10)
 
   * Fix some broken links
