@@ -10,6 +10,7 @@ This client currently only implements the read methods of the [v2 Bandiera API][
 [![Build status][shield-build]][info-build]
 [![Dependencies][shield-dependencies]][info-dependencies]
 [![MIT licensed][shield-license]][info-license]
+[![Known Vulnerabilities](https://snyk.io/test/github/springernature/bandiera-client-node/3fc231c72dea27100d49f6d5b5fb851b71083e7a/badge.svg)](https://snyk.io/test/github/springernature/bandiera-client-node/3fc231c72dea27100d49f6d5b5fb851b71083e7a)
 
 
 Installation
