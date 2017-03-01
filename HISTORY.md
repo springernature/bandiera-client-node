@@ -1,6 +1,12 @@
 
 # History
 
+## 2.4.7 (2017-03-01)
+
+  * Update `request` to 2.79.0 or greater
+  * Update date in copyright notice
+  * Remove coveralls leftovers
+
 ## 2.4.6 (2016-09-26)
 
   * Require `request` 2.74 or greater. Fixes: [https://snyk.io/vuln/npm:request:20160119](https://snyk.io/vuln/npm:request:20160119). Thanks to @benmag1 for the PR.
