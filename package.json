@@ -23,15 +23,15 @@
 		"node": ">=0.10"
 	},
 	"dependencies": {
-		"node.extend": "~1.1",
-		"request": "~2.74.0"
+		"node.extend": "~1.1.0",
+		"request": "~2.79.0"
 	},
 	"devDependencies": {
-		"istanbul": "~0.3",
-		"jscs": "^2",
+		"istanbul": "~0.4.5",
+		"jscs": "^3",
 		"jshint": "^2",
-		"mocha": "^2",
-		"mockery": "~1.4",
+		"mocha": "^3",
+		"mockery": "^2",
 		"proclaim": "^3",
 		"sinon": "^1"
 	},
