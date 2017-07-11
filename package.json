@@ -1,43 +1,41 @@
 {
-	"name": "bandiera-client",
-	"version": "2.4.7",
-
-	"description": "Bandiera is a simple, stand-alone feature flagging service that is not tied to any existing web framework or language. This is a client for talking to the web service.",
-	"keywords": [ "feature", "flagging" ],
-
-	"author": "Springer Nature",
-	"contributors": [
-		"Rowan Manning (http://rowanmanning.com/)",
-		"Andrew Walker (http://www.moddular.org/)"
-	],
-
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/springernature/bandiera-client-node.git"
-	},
-	"homepage": "https://github.com/springernature/bandiera-client-node",
-	"bugs": "https://github.com/springernature/bandiera-client-node/issues",
-	"license": "MIT",
-
-	"engines": {
-		"node": ">=0.10"
-	},
-	"dependencies": {
-		"node.extend": "~1.1.0",
-		"request": "~2.79.0"
-	},
-	"devDependencies": {
-		"istanbul": "~0.4.5",
-		"jscs": "^3",
-		"jshint": "^2",
-		"mocha": "^3",
-		"mockery": "^2",
-		"proclaim": "^3",
-		"sinon": "^1"
-	},
-
-	"main": "./lib/client.js",
-	"scripts": {
-		"test": "make test"
-	}
+  "name": "bandiera-client",
+  "version": "2.4.7",
+  "description": "Bandiera is a simple, stand-alone feature flagging service that is not tied to any existing web framework or language. This is a client for talking to the web service.",
+  "keywords": [
+    "feature",
+    "flagging"
+  ],
+  "author": "Springer Nature",
+  "contributors": [
+    "Rowan Manning (http://rowanmanning.com/)",
+    "Andrew Walker (http://www.moddular.org/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/springernature/bandiera-client-node.git"
+  },
+  "homepage": "https://github.com/springernature/bandiera-client-node",
+  "bugs": "https://github.com/springernature/bandiera-client-node/issues",
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "node.extend": "~1.1.0",
+    "request": "~2.81.0"
+  },
+  "devDependencies": {
+    "istanbul": "~0.4.5",
+    "jscs": "^3",
+    "jshint": "^2",
+    "mocha": "^3",
+    "mockery": "^2",
+    "proclaim": "^3",
+    "sinon": "^1"
+  },
+  "main": "./lib/client.js",
+  "scripts": {
+    "test": "make test"
+  }
 }
