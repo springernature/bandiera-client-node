@@ -1,6 +1,14 @@
 
 # History
 
+## 3.0.0 (2017-08-01)
+
+ * Drops support for `node` < 4
+ * Update `request` to 2.87.0 (a security update, requiring `node` >= 4)
+ * Adds Travis testing for `node` 8
+ * Adds `.editorconfig`
+ * Update year in copyright notice
+
 ## 2.4.7 (2017-03-01)
 
   * Update `request` to 2.79.0 or greater
