@@ -8,7 +8,6 @@ This client currently only implements the read methods of the [v2 Bandiera API][
 [![NPM version][shield-npm]][info-npm]
 [![Node.js version support][shield-node]][info-node]
 [![Build status][shield-build]][info-build]
-[![Dependencies][shield-dependencies]][info-dependencies]
 [![MIT licensed][shield-license]][info-license]
 
 
@@ -140,13 +139,12 @@ Node Bandiera client is licensed under the [MIT License][info-license].
 [bandiera-api]: https://github.com/nature/bandiera/wiki/API-Documentation
 [node]: http://nodejs.org
 
-[info-dependencies]: https://gemnasium.com/springernature/bandiera-client-node
 [info-license]: LICENSE
 [info-node]: package.json
 [info-npm]: https://www.npmjs.com/package/bandiera-client
 [info-build]: https://travis-ci.org/springernature/bandiera-client-node
 [shield-dependencies]: https://img.shields.io/gemnasium/springernature/bandiera-client-node.svg
 [shield-license]: https://img.shields.io/badge/license-MIT-blue.svg
-[shield-node]: https://img.shields.io/badge/node.js%20support-0.10–6-brightgreen.svg
+[shield-node]: https://img.shields.io/badge/node.js%20support-4–6-brightgreen.svg
 [shield-npm]: https://img.shields.io/npm/v/bandiera-client.svg
 [shield-build]: https://img.shields.io/travis/springernature/bandiera-client-node/master.svg
