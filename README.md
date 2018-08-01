@@ -131,7 +131,7 @@ make lint test
 License
 -------
 
-Copyright &copy; 2017 Springer Nature.  
+Copyright &copy; 2018 Springer Nature.
 Node Bandiera client is licensed under the [MIT License][info-license].
 
 
