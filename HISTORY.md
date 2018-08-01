@@ -3,7 +3,7 @@
 
 ## 3.0.0 (2017-08-01)
 
- * Drops support for `node` < 4
+ * Drops support for `node` < 4 & 5
  * Update `request` to 2.87.0 (a security update, requiring `node` >= 4)
  * Adds Travis testing for `node` 8
  * Adds `.editorconfig`
