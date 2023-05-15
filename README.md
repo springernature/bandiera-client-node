@@ -1,3 +1,6 @@
+# obsolete
+We archived this repository as no one was maintaining it, and the API was simple enough that most people were just using their own HTTP clients to talk to it, and avoiding an extra dependency.
+Also, we don’t use Node as a general rule for backend services, which didn’t help with lust for maintaining it.
 
 Bandiera Client (Node.js)
 =========================
